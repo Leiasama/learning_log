@@ -1,0 +1,87 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+{% block header %}
+<h2>注册账户</h2>
+{% endblock header %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="src/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/signin/">
+    <title>登录</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./src/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        /* Custom styles for centering button below text fields */
+        body {
+            background-color: #f3f3f3;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 100px; /* Adjust padding for better spacing */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        .form-signin-heading {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #00704A; /* Starbucks green */
+        }
+        .btn-primary {
+            background-color: #00704A; /* Starbucks green */
+            border-color: #00704A;
+            padding: 15px; /* Adjust button padding */
+            font-size: 15px; /* Increase button font size */
+            width: 20%;
+            text-align: center;
+            margin: 0 auto; /* Center button horizontally */
+            display: block; /* Ensure button is a block element */
+        }
+        .btn-primary:hover {
+            background-color: #005B3D; /* Hover color */
+            border-color: #005B3D;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Use Bootstrap CSS classes to center content -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div style="margin-top: 30px;">
+                    <form class="form" method="post" action="{% url 'users:login' %}">
+                        {% csrf_token %}
+                        <h2 class="form-signin-heading">用户注册</h2>
+                        {% bootstrap_form form %}
+                        <div class="text-center"> <!-- Center the button within a block-level element -->
+                            {% buttons %}
+                            <button class="btn btn-primary" type="submit">注册</button>
+                            {% endbuttons %}
+                        </div>
+                        <input type ="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- /container -->
+</body>
+</html>
+{% endblock content %}

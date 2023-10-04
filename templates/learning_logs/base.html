@@ -1,0 +1,53 @@
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>钓鱼佬</title>
+    <link rel="icon" href="src/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="src/favicon.ico" type="image/x-icon">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
+          <img alt="我❤钓鱼" src=src/img.png>
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'learning_logs:topics' %}">专题🐢</a></li>
+      </ul>
+
+
+        {% if user.is_authenticated %}
+            <ul class="nav navbar-nav navbar-right">
+                <p class="navbar-text">Aloha~ {{ user.username }}</p>
+                <li><a href="{% url 'users:logout' %}">注销🚗</a></li>
+
+            </ul>
+    {% else %}
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'users:login' %}">登录🐟</a></li>
+        <li><a href="{% url 'users:register' %}">注册🎣</a></li>
+      </ul>
+    {% endif %}
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+{% block content %}{% endblock content %}
+</body>
+</html>
+

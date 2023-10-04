@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "learning_logs/base.html" %}
+<html lang="en">
+{% block header %}
+    <h1 class="text-center">专题</h1>
+{% endblock header %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Topics</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2 class="text-center">专题列表</h2>
+                <ul class="list-group">
+                    {% for topic in topics %}
+                        <li class="list-group-item">
+                            <h3 class="text-center">
+                                <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+                            </h3>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-center">暂无新专题</li>
+                    {% endfor %}
+                </ul>
+                <div class="text-center">
+                    <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-custom">增加新专题</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    .btn-custom {
+        background-color: #00704A; /* 星巴克绿色 */
+        border-color: #00704A;
+        color: white; /* 文字颜色为白色 */
+    }
+
+    .btn-custom:hover {
+        background-color: #005B3D; /* 鼠标悬停时的颜色 */
+        border-color: #005B3D;
+    }
+</style>
+{% endblock content %}
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'learning_logs/base.html' %}
+{% block header %}
+<h2>{{ 专题 }}</h2>
+{% endblock header %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>专题</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="topic-title">{{ topic }}</p>
+            <hr style="border-top: 2px solid #00704A; margin-top: 5px;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'learning_logs:new_entry' topic.id %}" class="btn btn-custom">添加新词条</a>
+        </div>
+    </div>
+</div>
+<ul>
+    {% for entry in entries %}
+    <div class="panel panel-default my-panel"> <!-- 添加自定义CSS类 -->
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="entry-date">{{ entry.date_added|date:'Y年m月d日D H:i' }}</span>
+                <small>
+                    <a href="{% url 'learning_logs:edit_entry' entry.id %}" class="btn btn-default btn-xs">编辑</a>
+                </small>
+            </h3>
+        </div>
+        <div class="panel-body">
+            {{ entry.text|linebreaks }}
+        </div>
+    </div><!--panel-->
+    <div style="margin-bottom: 30px;"></div> <!-- 增加更大的间距 -->
+    {% empty %}
+    <p>没有新词条啦</p>
+    {% endfor %}
+</ul>
+</body>
+<style>
+    .btn-custom {
+        background-color: #00704A; /* 星巴克绿色 */
+        border-color: #00704A;
+        color: white; /* 文字颜色为白色 */
+    }
+
+    .btn-custom:hover {
+        background-color: #005B3D; /* 鼠标悬停时的颜色 */
+        border-color: #005B3D;
+    }
+
+    .topic-title {
+        font-size: 24px; /* 增大标题字体大小 */
+        margin-top: 20px; /* 调整上边距 */
+    }
+
+    .entry-date {
+        font-size: 14px; /* 缩小时间字体大小 */
+    }
+
+    .panel-heading {
+        border-bottom: 2px solid #00704A; /* 添加底部边框分割线 */
+    }
+
+    .panel-body {
+        max-height: 200px; /* 减小面板的最大高度 */
+        overflow: auto; /* 添加滚动条，以防内容溢出 */
+    }
+
+    .my-panel {
+        margin-top: 20px; /* 增加面板与按钮之间的距离 */
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: auto;
+    }
+</style>
+{% endblock content %}
+</html>

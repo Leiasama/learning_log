@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<html lang="en">
+{% block header %}
+<head>
+    <meta charset="UTF-8">
+    <title>新主题</title>
+</head>
+{% endblock header %}
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>添加新主题:</h2>
+                <form action="{% url 'learning_logs:new_topic' %}" method="post" class="form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                    <button name="submit" class="btn" style="background-color: #00704A; color: white;">提交</button>
+                    {% endbuttons %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock content %}
