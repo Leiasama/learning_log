@@ -6,11 +6,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>钓鱼佬</title>
-    <link rel="icon" href="src/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="src/favicon.ico" type="image/x-icon">
+    <title>我❤钓鱼</title>
+    <link rel="icon" href="/static/image/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/image/favicon.ico" type="image/x-icon">
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <style>
+        body {
+            background-image: url('/static/image/bk.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 100vh; /* 保持内容至少占满视窗的高度 */
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background-color: #f0f0f0; /* 可选，添加背景颜色以提高可读性 */
+            padding: 10px 0; /* 可选，添加一些内边距以增加页脚的可视性 */
+        }
+    </style>
 </head>
 
 <body>
@@ -20,7 +39,7 @@
     <div class="navbar-header">
 
       <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
-          <img alt="我❤钓鱼" src=src/img.png>
+          <img alt="我❤钓鱼" src="/static/image/img.png">
       </a>
     </div>
 
@@ -48,6 +67,10 @@
 </nav>
 
 {% block content %}{% endblock content %}
+
+<footer>
+    <p>Copyright &Leia; 2023 我❤钓鱼</p>
+</footer>
 </body>
 </html>
 
